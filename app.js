@@ -32,7 +32,7 @@ app.post('/api/login', async (req, res) => {
 app.post('/api/register', async (req, res) => {
     // console.log(req.body)
 
-       // Hashing
+       // Hashing of password
     const { username, password: plainTextPassword } = req.body
 
     if(!username || typeof username !== 'string') {
