@@ -7,6 +7,9 @@
       async function registerUser(event) {
         event.preventDefault()
         const username = document.getElementById('username').value
+        const email = document.getElementById('email').value
+        const phone = document.getElementById('phone').value
+        const address = document.getElementById('address').value
         const password = document.getElementById('password').value
 
         
@@ -19,6 +22,9 @@
           },
           body: JSON.stringify({
             username,
+            email,
+            phone,
+            address,
             password
           })
         }).then((res) => res.json())
