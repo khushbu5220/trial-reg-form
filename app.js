@@ -1,7 +1,5 @@
 // start: nodemon app.js
 
-
-
 const bodyParser = require('body-parser')
 const express = require('express')
 const path = require('path')
@@ -15,6 +13,7 @@ const validator = require('validator')
 
 const JWT_SECRET = 'hnuheduhdy83yeudhuh1293-982ucfhfc(:")@#$%^34566*+=jbfcjkhueduf%$#U&%@@!@!*8gygyghgy'
 
+const checkAuth = require('./middleware/check-auth');
 
 
 mongoose.connect('mongodb://localhost:27017/login-app-db', {
@@ -82,6 +81,8 @@ app.post('/api/login', async (req, res) => {
         }, 
         JWT_SECRET
         )
+        console.log(token)
+
 
         return res.json({status: 'ok', data: token })
 
@@ -162,6 +163,27 @@ app.post('/api/register', async (req, res) => {
 
     res.json({ status: 'ok' })                                                                                               
 })
+
+app.post('/api/profile',checkAuth, async(req, res) => {
+    
+    try{
+        res.status(200).json({
+            id: req.userData.id,
+            email: req.userData.email
+        })
+
+
+    }catch(error){
+        console.log(error)
+        res.json({status: 'error', error: ';))'})
+    }
+
+})
+
+
+
+
+
 
 app.listen(9999, () => {
     console.log('Server up at 9999')
