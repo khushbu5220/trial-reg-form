@@ -1,10 +1,10 @@
 const jwt = require('jsonwebtoken');
-const JWT_KEY = 'hnuheduhdy83yeudhuh1293-982ucfhfc(:")@#$%^34566*+=jbfcjkhueduf%$#U&%@@!@!*8gygyghgy'
+const JWT_SECRET = process.env.JWT_KEY
 
 module.exports = (req, res, next) => {
     try {
         const token = req.headers.authorization.split(" ")[1];
-        const decoded = jwt.verify(token, JWT_KEY);
+        const decoded = jwt.verify(token, JWT_SECRET);
         req.userData = decoded;
         next();
     } catch (error) {

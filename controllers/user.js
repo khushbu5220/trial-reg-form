@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 
 const User = require("../model/user");
 
-const JWT_SECRET = 'hnuheduhdy83yeudhuh1293-982ucfhfc(:")@#$%^34566*+=jbfcjkhueduf%$#U&%@@!@!*8gygyghgy'
+const JWT_SECRET = process.env.JWT_KEY
 
 
 
@@ -94,12 +94,11 @@ exports.users_post_login = async (req, res) => {
 
         const token = jwt.sign({
             id: user._id, 
-            email: user.email
+            email: user.email.toString()
         }, 
         JWT_SECRET
         )
         console.log(token)
-
 
         return res.json({status: 'ok', data: token })
 
